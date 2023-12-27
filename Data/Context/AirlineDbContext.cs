@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Context
 {
-    public class AirlineDbContext : IdentityDbContext
+    public class AirlineDbContext : IdentityDbContext<CustomUser>
     {
         
 
@@ -25,7 +25,7 @@ namespace Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Flight>().Property(t => t.Id).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<Flight>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
         }
 
     }

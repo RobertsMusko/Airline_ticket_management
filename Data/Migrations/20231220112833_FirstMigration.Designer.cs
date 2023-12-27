@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AirlineDbContext))]
-    [Migration("20231214192713_1st migration")]
-    partial class _1stmigration
+    [Migration("20231220112833_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,9 +31,11 @@ namespace Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
-                    b.Property<string>("ArrivalDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("AvailableSeats")
+                        .HasColumnType("int");
 
                     b.Property<int>("Columns")
                         .HasColumnType("int");
@@ -49,11 +51,13 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DepartureDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DepartureDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Rows")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalSeats")
                         .HasColumnType("int");
 
                     b.Property<double>("WholesalePrice")
@@ -66,11 +70,9 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Domain.Models.Ticket", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Cancelled")
                         .HasColumnType("bit");

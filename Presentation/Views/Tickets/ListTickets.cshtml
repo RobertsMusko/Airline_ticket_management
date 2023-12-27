@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Presentation.Models.ViewModels.ListTicketsViewModel>
+
+@{
+    ViewData["Title"] = "ListTickets";
+}
+
+<h1>List of all tickets</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Row)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Column)
+            </th>
+            <th>a
+                @Html.DisplayNameFor(model => model.FlightIdFk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Passport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricePaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cancelled)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Row)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Column)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightIdFk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Passport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PricePaid)
+            </td>
+            <td>
+                    <img src="@Url.Content(item.Image)" alt="Passport Image" style="max-width: 100px; max-height: 100px;" />
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Cancelled)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "cancel", new {id = item.Id})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
