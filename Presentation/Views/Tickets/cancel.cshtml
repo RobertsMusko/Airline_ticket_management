@@ -1,0 +1,57 @@
+﻿@model Presentation.Models.ViewModels.EditTicketViewModel
+
+@{
+    ViewData["Title"] = "cancel";
+}
+
+<h1>Cancelation of the booking</h1>
+
+<h4>To cancel write True, otherwise leave it as it is</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="cancel">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Row" class="form-control" hidden />
+                <span asp-validation-for="Row" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Column" class="form-control" hidden />
+                <span asp-validation-for="Column" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Passport" class="form-control" hidden />
+                <span asp-validation-for="Passport" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cancelled" class="control-label"></label>
+                <input asp-for="Cancelled" class="form-control" />
+                <span asp-validation-for="Cancelled" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FlightIdFk" class="control-label" style="display: none;"></label>
+                <input asp-for="FlightIdFk" class="form-control" style="display: none; />
+                <span asp-validation-for="FlightIdFk" class="text-danger" style="display: none;></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label" style="display: none;"></label>
+                <input asp-for="Id" class="form-control" style="display: none; />
+                <span asp-validation-for="Id" class="text-danger" style="display: none;></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PricePaid" class="control-label" style="display: none;"></label>
+                <input asp-for="PricePaid" class="form-control" style="display: none; />
+                <span asp-validation-for="PricePaid" class="text-danger" style="display: none;></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

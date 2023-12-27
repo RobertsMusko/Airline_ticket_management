@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class _1stmigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,12 +55,14 @@ namespace Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Rows = table.Column<int>(type: "int", nullable: false),
                     Columns = table.Column<int>(type: "int", nullable: false),
-                    DepartureDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ArrivalDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DepartureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CountryFrom = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CountryTo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     WholesalePrice = table.Column<double>(type: "float", nullable: false),
-                    CommisionRate = table.Column<double>(type: "float", nullable: false)
+                    CommisionRate = table.Column<double>(type: "float", nullable: false),
+                    TotalSeats = table.Column<int>(type: "int", nullable: false),
+                    AvailableSeats = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -177,8 +179,7 @@ namespace Data.Migrations
                 name: "Tickets",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Row = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Column = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FlightIdFk = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
